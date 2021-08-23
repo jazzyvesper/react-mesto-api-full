@@ -1,0 +1,32 @@
+.entrance__item {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #bcbcc4;
+  padding-bottom: 13px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  background-color: #000;
+  color: #FFF;
+  
+  }
+
+  .entrance__item::placeholder {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CCC;
+  }
+
+  .entrance__item:focus { 
+  outline: none; 
+  
+  } 
+  
+  @media screen and (max-width: 321px) {
+  .entrance__item {
+    width: 260px;
+    margin: auto;
+  } 
+}

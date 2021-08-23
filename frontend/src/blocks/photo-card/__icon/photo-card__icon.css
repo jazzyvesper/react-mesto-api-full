@@ -1,0 +1,14 @@
+.photo-card__icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border: 0;
+  transition: opacity 0.3s;
+  outline: 0;
+}
+
+.photo-card__icon:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\ezhiki"
+		},
+		{
+			"path": "..\\mesto"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ezhiki"
+	}
+}

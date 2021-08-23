@@ -1,0 +1,12 @@
+.entrance__container {
+    width: 358px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .entrance__container {
+      width: 282px;
+    }
+  }

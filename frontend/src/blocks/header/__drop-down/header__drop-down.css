@@ -1,0 +1,14 @@
+
+ @media screen and (max-width: 450px) {
+  .header__drop-down {
+    border: 0;
+    border-bottom: 10px double #fff; 
+    border-top: 3px solid  #fff; 
+    content:"";
+    height: 5px; 
+    width:24px;
+    margin-right: 27px;
+    outline: none;
+    background-color: transparent;
+  }
+}

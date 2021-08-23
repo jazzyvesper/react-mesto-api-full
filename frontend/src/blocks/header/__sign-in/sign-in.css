@@ -1,0 +1,21 @@
+.header__sign-in {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: normal;
+  margin-left: auto;
+  text-decoration: none;
+  color: #fff;
+}
+
+.header__sign-in:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 321px) {
+  .header__sign-in {
+    font-size: 14px;
+    line-height: 17px; 
+    margin-right: 30px; 
+  } 
+}

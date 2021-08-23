@@ -1,0 +1,31 @@
+.entrance__button {
+    margin: 0;
+    padding: 0;
+    align-self: center;
+    width: 358px;
+    height: 50px;
+    border: 0;
+    border-radius: 2px;
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 216px;
+    background-color: #FFF;
+  }
+  
+  .entrance__button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+  
+  @media screen and (max-width: 321px) {
+    .entrance__button {
+      width: 260px;
+      height: 46px;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      margin-top: 130px;
+    }
+  }

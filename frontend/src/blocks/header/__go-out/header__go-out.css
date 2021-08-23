@@ -1,0 +1,12 @@
+.header__go-out {
+  color: #A9A9A9;
+  margin: 0; 
+  padding: 0; 
+  border: 0; 
+  outline: none; 
+  background-color: transparent;
+}
+
+.header__go-out:hover {
+  cursor: pointer;
+}
