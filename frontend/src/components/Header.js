@@ -26,8 +26,8 @@ function Header(props) {
           <button onClick={props.onSignOut} className="header__go-out">Выйти</button>
         </div> :
         <nav className="header__menu">
-          <NavLink to="/sign-in" activeClassName="header__active-link" className="header__sign-in">Войти</NavLink>
-          <NavLink to="/sign-up" activeClassName="header__active-link" className="header__sign-up">Регистрация</NavLink>
+          <NavLink to="/signin" activeClassName="header__active-link" className="header__sign-in">Войти</NavLink>
+          <NavLink to="/signup" activeClassName="header__active-link" className="header__sign-up">Регистрация</NavLink>
         </nav>
       }  
     </header>

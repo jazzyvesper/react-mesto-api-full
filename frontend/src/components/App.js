@@ -61,7 +61,7 @@ function App() {
     .then((res) => {
       if(res){
         handleSubmitClick(succesTextOk)
-        history.push('/sign-in') 
+        history.push('/signin') 
       }
     })
     .catch(err => {
@@ -88,7 +88,7 @@ function App() {
   //Выход из ЛК
   function onSignOut(){
     localStorage.removeItem('token');
-    history.push('/sign-in');
+    history.push('/signin');
     setLoggedIn(false)
   }
 
@@ -197,12 +197,12 @@ function App() {
       <Header token={email} loggedIn={loggedIn} onSignOut={onSignOut} />
       <Switch>
         <Route exact path="/">
-        {loggedIn ? <Redirect to="/my-profile" /> : <Redirect to="/sign-in" />}
+        {loggedIn ? <Redirect to="/my-profile" /> : <Redirect to="/signin" />}
       </Route> 
-        <Route path="/sign-up">
+        <Route path="/signup">
         <Register onRegister={onRegister} />
         </Route>
-        <Route path="/sign-in">
+        <Route path="/signin">
         <Login 
           onLogin={onLogin} 
           onSuccesText={handleSubmitClick}/>

@@ -12,7 +12,7 @@ const errorsHandler = require('./middlewares/errorsHandler');
 const { validateSignUp, validateSignIn } = require('./middlewares/validator');
 const NewError = require('./error/NewError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -22,14 +22,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(cors({
-  origin: [
-    'http://jazzyvesper.nomoredomains.monster',
-    'https://jazzyvesper.nomoredomains.monster',
-    'http://localhost:3000',
-  ],
-}));
-
+app.use(cors)
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true,
