@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.jazzyvesper.nomoredomains.club';
 
 const getResponsData = (res)=> {
   if(res.ok) {

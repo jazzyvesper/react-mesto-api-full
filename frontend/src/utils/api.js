@@ -117,7 +117,7 @@ class Api {
   }
   
   const api = new Api({
-    address: 'https://mesto.nomoreparties.co/v1/cohort-24',
+    address: 'https://api.jazzyvesper.nomoredomains.club',
     token: '35787694-4746-4a15-83d0-360cc3763119',
   });
 
