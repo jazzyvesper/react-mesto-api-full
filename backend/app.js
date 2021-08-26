@@ -37,9 +37,6 @@ app.use(cors({
     ],
   }));
 
-//app.use(cors())
-
-
 app.post('/signup', validateSignUp, createUser);
 app.post('/signin', validateSignIn, login);
 
