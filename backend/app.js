@@ -40,7 +40,7 @@ app.use(requestLogger); // подключаем логгер запросов
   }
 ));*/
 
-app.use(cors({origin: 'https//jazzyvesper.nomoredomains.monster'}))
+app.use(cors())
 
 
 app.post('/signup', validateSignUp, createUser);
