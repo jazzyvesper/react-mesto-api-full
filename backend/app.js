@@ -12,7 +12,7 @@ const errorsHandler = require('./middlewares/errorsHandler');
 const { validateSignUp, validateSignIn } = require('./middlewares/validator');
 const NewError = require('./error/NewError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
+//const cors = require('cors');
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -40,7 +40,7 @@ app.use(requestLogger); // подключаем логгер запросов
   }
 ));*/
 
-app.use(cors());
+//app.use(cors());
 
 
 app.post('/signup', validateSignUp, createUser);
