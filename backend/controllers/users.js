@@ -56,12 +56,11 @@ const login = (req, res, next) => {
     });
 };
 
-const deleteCoockie = (req, res, next)=> {
+const deleteCoockie = (req, res)=> {
   res.clearCookie('jwt')
-  .send(
+  res.status(201).send(
     { message: 'Вы вышли из системы' },
   );
-  next();
 }
 
 const findCurrent = (req, res, next) => {

@@ -33,7 +33,7 @@ app.use(requestLogger); // подключаем логгер запросов
 app.use(cookieParser());
 app.post('/signup', validateSignUp, createUser);
 app.post('/signin', validateSignIn, login);
-app.post('/signout', deleteCoockie);
+app.get('/signout', deleteCoockie);
 app.use(auth);
 app.use('/users', userRoter);
 app.use('/cards', cardRouter);
