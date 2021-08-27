@@ -27,6 +27,7 @@ const createUser = (req, res, next) => {
     });
 };
 
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
@@ -39,8 +40,8 @@ const login = (req, res, next) => {
       res.cookie('jwt', token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
-        sameSite: true,
-      }).send(
+      })
+      .send(
         { message: 'Авторизация прошла успешно' },
       );
     })
@@ -58,7 +59,7 @@ const login = (req, res, next) => {
 const findCurrent = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
-      res.status(201).send({ _id: user._id, email: user.email });
+      res.status(201).send(user);
     })
     .catch(() => next(new NewError(500)));
 };

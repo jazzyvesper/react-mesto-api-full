@@ -27,7 +27,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([]);
   const [selectedCardDel,setSelectedCardDel] = React.useState(false)
-  const [loggedIn, setLoggedIn] = React.useState(false)
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isSacces, setIsSacces] = React.useState(false)
   const [succesOk, setSuccesOk] =React.useState(false);
   const history = useHistory(); 
@@ -41,19 +41,23 @@ function App() {
 
    //Получение данных с сервера
   React.useEffect(() => {
+    if(loggedIn) {
     Promise.all([api.getinfo(), api.getCards()])
     .then(([userData, cardlist]) => {
       setCurrentUser(userData);
       setCards(cardlist)
     })
     .catch(err => console.log(`Ошибка при загрузке профиля: ${err}`))
-  }, [])
+  }else {
+  
+    }
+  }, [loggedIn])
 
    
   //Получение токена при какждом мониторовании
-  React.useEffect(()=>{
+  /*React.useEffect(()=>{
     tokenCheck()
-  })
+  })*/
 
   //Регистрация пользователя
   function onRegister({email,password}) {
@@ -72,18 +76,23 @@ function App() {
   //Вход в профиль
   function onLogin({email,password}){
     auth.authorize(email, password)
-    .then((data) => {
-      if (data.token){
-        localStorage.setItem('token', data.token);
-        setLoggedIn(true)
-        history.push('/my-profile')
-        return data;
-      }
+    .then(() => {
+      console.log('яздесь')
+      tokenCheck();
     })
     .catch(err => {
       handleSubmitClick(succesTextErr)
     });
   }
+ 
+  /*const handleTokenCheck = ()=> {
+    auth.getContent()
+    .then((res) => {
+      setEmail(res.email);
+      setLoggedIn(true);
+      history.push(routes.root);
+  })
+  }*/
 
   //Выход из ЛК
   function onSignOut(){
@@ -94,17 +103,14 @@ function App() {
 
   //Получение данных пользователя, email
   function tokenCheck() {
-    const token = localStorage.getItem('token');
-    if (token){
-      auth.getContent(token).then((res) => {
-        if (res){
-          setEmail(res.data.email)
-        }
+    auth.getContent()
+    .then((res) => {
+      console.log('атеперьздесь')
+        setEmail(res.email)
         setLoggedIn(true)
         history.push('/my-profile')
-      })
-      .catch(err => console.log(`ошибка при загрузке: ${err}`))  
-    }
+    })
+      .catch(err => console.log(`ошибка при загрузке данных профиля: ${err}`))  
   }
   
   function handleCardClick (card) {
