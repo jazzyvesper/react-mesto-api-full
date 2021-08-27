@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 
 const app = express();
+const cookieParser = require('cookie-parser');
 const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -12,7 +14,6 @@ const errorsHandler = require('./middlewares/errorsHandler');
 const { validateSignUp, validateSignIn } = require('./middlewares/validator');
 const NewError = require('./error/NewError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-//const cors = require('cors');
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb', {
@@ -29,17 +30,7 @@ app.use(express.urlencoded({
 }));
 
 app.use(requestLogger); // подключаем логгер запросов
-
-/*app.use(cors({
-    origin: [
-      'https//jazzyvesper.nomoredomains.monster',
-      'https://localhost:3000',
-    ],
-  }));
-
-app.use(cors());*/
-
-
+app.use(cookieParser());
 app.post('/signup', validateSignUp, createUser);
 app.post('/signin', validateSignIn, login);
 

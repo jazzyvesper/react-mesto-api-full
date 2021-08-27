@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs'); // импортируем bcrypt
-
 const jwt = require('jsonwebtoken');
+const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const NewError = require('../error/NewError');
 
@@ -31,9 +31,18 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      res.send({
-        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
-      });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'express-dev-key',
+        { expiresIn: '7d' },
+      );
+      res.cookie('jwt', token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        sameSite: true,
+      }).send(
+        { message: 'Авторизация прошла успешно' },
+      );
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
