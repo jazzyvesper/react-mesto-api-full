@@ -9,7 +9,7 @@ const { errors } = require('celebrate');
 const userRoter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 const auth = require('./middlewares/auth');
-const { createUser, login } = require('./controllers/users');
+const { createUser, login, deleteCoockie } = require('./controllers/users');
 const errorsHandler = require('./middlewares/errorsHandler');
 const { validateSignUp, validateSignIn } = require('./middlewares/validator');
 const NewError = require('./error/NewError');
@@ -33,7 +33,7 @@ app.use(requestLogger); // подключаем логгер запросов
 app.use(cookieParser());
 app.post('/signup', validateSignUp, createUser);
 app.post('/signin', validateSignIn, login);
-
+app.post('/signout', deleteCoockie);
 app.use(auth);
 app.use('/users', userRoter);
 app.use('/cards', cardRouter);

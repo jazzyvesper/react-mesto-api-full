@@ -56,6 +56,14 @@ const login = (req, res, next) => {
     });
 };
 
+const deleteCoockie = (req, res, next)=> {
+  res.clearCookie('jwt')
+  .send(
+    { message: 'Вы вышли из системы' },
+  );
+  next();
+}
+
 const findCurrent = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
@@ -131,4 +139,5 @@ module.exports = {
   upDateAvatarUser,
   login,
   findCurrent,
+  deleteCoockie,
 };
