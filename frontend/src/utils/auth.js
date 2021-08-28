@@ -43,3 +43,11 @@ export const getContent = () => {
   })
   .then(getResponsData);
 } 
+
+export const signOut = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "GET",
+    credentials: "include",
+  })
+  .then(getResponsData);
+}

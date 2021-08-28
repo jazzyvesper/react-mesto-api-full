@@ -55,9 +55,9 @@ function App() {
 
    
   //Получение токена при какждом мониторовании
-  /*React.useEffect(()=>{
+  React.useEffect(()=>{
     tokenCheck()
-  })*/
+  })
 
   //Регистрация пользователя
   function onRegister({email,password}) {
@@ -77,7 +77,6 @@ function App() {
   function onLogin({email,password}){
     auth.authorize(email, password)
     .then(() => {
-      console.log('яздесь')
       tokenCheck();
     })
     .catch(err => {
@@ -85,30 +84,25 @@ function App() {
     });
   }
  
-  /*const handleTokenCheck = ()=> {
-    auth.getContent()
-    .then((res) => {
-      setEmail(res.email);
-      setLoggedIn(true);
-      history.push(routes.root);
-  })
-  }*/
-
   //Выход из ЛК
   function onSignOut(){
-    localStorage.removeItem('token');
-    history.push('/signin');
-    setLoggedIn(false)
+    auth.signOut()
+    .then(()=> {
+      history.push('/signin');
+      setLoggedIn(false)
+    })
+    .catch(err => console.log(`Не удалось выйти из системы: ${err}`)) 
   }
 
   //Получение данных пользователя, email
   function tokenCheck() {
     auth.getContent()
     .then((res) => {
-      console.log('атеперьздесь')
+      if(res){
         setEmail(res.email)
         setLoggedIn(true)
         history.push('/my-profile')
+      }
     })
       .catch(err => console.log(`ошибка при загрузке данных профиля: ${err}`))  
   }
@@ -190,9 +184,10 @@ function App() {
   // постановка лайка
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
     .catch(err => console.log(`Ошибка при постановке лайка: ${err}`))
