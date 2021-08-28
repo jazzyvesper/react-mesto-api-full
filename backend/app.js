@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
-
-const app = express();
 const cookieParser = require('cookie-parser');
+const app = express();
+
 const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
@@ -30,7 +30,15 @@ app.use(express.urlencoded({
 }));
 
 app.use(requestLogger); // подключаем логгер запросов
+
 app.use(cookieParser());
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.post('/signup', validateSignUp, createUser);
 app.post('/signin', validateSignIn, login);
 app.get('/signout', deleteCoockie);
