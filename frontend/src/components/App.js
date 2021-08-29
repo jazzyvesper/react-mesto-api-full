@@ -104,7 +104,7 @@ function App() {
         history.push('/my-profile')
       }
     })
-      .catch(err => console.log(`ошибка при загрузке данных профиля: ${err}`))  
+      .catch(err => console.log(`Зарегистрируйтесь или войдите в систему: ${err}`))  
   }
   
   function handleCardClick (card) {
