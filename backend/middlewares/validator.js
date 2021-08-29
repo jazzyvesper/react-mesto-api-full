@@ -1,6 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
 
+const validateId = Joi.string().length(24).hex();
 const validateURL = (value) => {
   if (!validator.isURL(value, { require_protocol: true })) {
     throw new Error('Неправильный формат ссылки');
@@ -10,7 +11,7 @@ const validateURL = (value) => {
 
 const validateUserId = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().alphanum().length(24),
+    userId: Joi.string().length(24).hex()
   }),
 });
 
@@ -53,18 +54,18 @@ const validateCreateCard = celebrate({
 
 const validateDeleteCard = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
+    cardId: validateId
   }),
 });
 const validateAddLikes = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
+    cardId: validateId
   }),
 });
 
 const validateDeleteLikes = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().length(24),
+    cardId: validateId
   }),
 });
 
