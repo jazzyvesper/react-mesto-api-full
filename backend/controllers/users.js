@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs'); // импортируем bcrypt
 const jwt = require('jsonwebtoken');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const NewError = require('../error/NewError');
@@ -27,7 +28,6 @@ const createUser = (req, res, next) => {
     });
 };
 
-
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
@@ -41,9 +41,9 @@ const login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
       })
-      .send(
-        { message: 'Авторизация прошла успешно' },
-      );
+        .send(
+          { message: 'Авторизация прошла успешно' },
+        );
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -56,12 +56,12 @@ const login = (req, res, next) => {
     });
 };
 
-const deleteCoockie = (req, res)=> {
-  res.clearCookie('jwt')
+const deleteCoockie = (req, res) => {
+  res.clearCookie('jwt');
   res.status(201).send(
     { message: 'Вы вышли из системы' },
   );
-}
+};
 
 const findCurrent = (req, res, next) => {
   User.findById(req.user._id)
